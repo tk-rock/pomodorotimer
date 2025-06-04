@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポモドーロタイマー</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ポモドーロタイマー</h1>
+        
+        <div class="timer-container">
+            <div class="timer-display">
+                <span id="minutes">25</span>:<span id="seconds">00</span>
+            </div>
+            
+            <div class="progress-ring-container">
+                <svg class="progress-ring" width="300" height="300">
+                    <circle class="progress-ring-circle-bg" cx="150" cy="150" r="120" />
+                    <circle class="progress-ring-circle" cx="150" cy="150" r="120" />
+                </svg>
+                <div class="timer-controls">
+                    <button id="start-btn" class="control-btn"><i class="fas fa-play"></i></button>
+                    <button id="pause-btn" class="control-btn hidden"><i class="fas fa-pause"></i></button>
+                    <button id="reset-btn" class="control-btn"><i class="fas fa-redo-alt"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="settings">
+            <div class="setting">
+                <label for="work-time">作業時間 (分):</label>
+                <input type="number" id="work-time" min="1" max="60" value="25">
+            </div>
+            <div class="setting">
+                <label for="break-time">休憩時間 (分):</label>
+                <input type="number" id="break-time" min="1" max="30" value="5">
+            </div>
+            <div class="setting">
+                <label for="long-break-time">長い休憩時間 (分):</label>
+                <input type="number" id="long-break-time" min="1" max="60" value="15">
+            </div>
+            <div class="setting">
+                <label for="cycles">長い休憩までのサイクル数:</label>
+                <input type="number" id="cycles" min="1" max="10" value="4">
+            </div>
+        </div>
+        
+        <div class="session-info">
+            <div class="cycle-counter">サイクル: <span id="cycle-count">0</span>/<span id="total-cycles">4</span></div>
+            <div class="mode-indicator">モード: <span id="current-mode">作業</span></div>
+        </div>
+        
+        <div class="notification-settings">
+            <div class="setting">
+                <label for="notification-toggle">通知:</label>
+                <label class="switch">
+                    <input type="checkbox" id="notification-toggle" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="setting">
+                <label for="sound-toggle">サウンド:</label>
+                <label class="switch">
+                    <input type="checkbox" id="sound-toggle" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <audio id="notification-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3"></audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>
