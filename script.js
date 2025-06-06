@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentModeEl = document.getElementById('current-mode');
     const notificationToggle = document.getElementById('notification-toggle');
     const soundToggle = document.getElementById('sound-toggle');
+    const themeToggle = document.getElementById('theme-toggle');
     const notificationSound = document.getElementById('notification-sound');
     const progressRing = document.querySelector('.progress-ring-circle');
 
@@ -45,6 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
     breakTimeInput.addEventListener('change', updateSettings);
     longBreakTimeInput.addEventListener('change', updateSettings);
     cyclesInput.addEventListener('change', updateSettings);
+    themeToggle.addEventListener('change', () => {
+        const theme = themeToggle.checked ? 'dark' : 'light';
+        applyTheme(theme);
+        localStorage.setItem('theme', theme);
+    });
 
     // Functions
     function startTimer() {
@@ -187,6 +193,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeToggle.checked = true;
+        } else {
+            document.body.classList.remove('dark-theme');
+            themeToggle.checked = false;
+        }
+    }
+
     // Initialize
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
     resetTimer();
 });
